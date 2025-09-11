@@ -51,17 +51,7 @@ from utils.train_utils import (DictAverageMeter, confidence_weighted_loss,
                                cutmix_img_, cutmix_mask)
 from version import __version__
 
-# from MCTNET.model.network_semicd import MCTNet
 import torch.nn.functional as F
-from tqdm import tqdm
-import numpy as np
-
-
-
-
-
-
-
 
 
 
@@ -133,7 +123,6 @@ def compute_lfc_loss(feat1, feat2, change_mask, margin=1.0, alpha=5.0):
 
 
 
-
 def compute_cross_ce_with_mask(pred1, pred2, tau=0.70,mask=None):
     with torch.no_grad():
         pred1_prob = F.softmax(pred1, dim=1)
@@ -154,12 +143,6 @@ def seed_everything(seed):
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True  
     torch.backends.cudnn.benchmark = False
-
-
-
-
-
-
 
 
 
@@ -286,17 +269,14 @@ if __name__ == '__main__':
     trainsampler_l = torch.utils.data.distributed.DistributedSampler(trainset_l)
     trainloader_l = DataLoader(trainset_l, batch_size=cfg['batch_size'], pin_memory=True, num_workers=1, drop_last=True,
                                sampler=trainsampler_l)
-    # trainloader_l = DataLoader(trainset_l, batch_size=cfg['batch_size'],
-    #                             pin_memory=True, num_workers=1, drop_last=True)
+
     trainsampler_u = torch.utils.data.distributed.DistributedSampler(trainset_u)
     trainloader_u = DataLoader(trainset_u, batch_size=cfg['batch_size'], pin_memory=True, num_workers=1, drop_last=True,
                                sampler=trainsampler_u)
-    # trainloader_u = DataLoader(trainset_u, batch_size=cfg['batch_size'],
-    #                            pin_memory=True, num_workers=1, drop_last=True)
+
     valsampler = torch.utils.data.distributed.DistributedSampler(valset)
     valloader = DataLoader(valset, batch_size=1, pin_memory=True, num_workers=1, drop_last=False, sampler=valsampler)
-    # valloader = DataLoader(valset, batch_size=1, pin_memory=True, num_workers=1,
-    #                        drop_last=False)
+
     palette = get_palette(cfg['dataset'])
 
     if cfg['iters'] is not None:
@@ -324,14 +304,11 @@ if __name__ == '__main__':
 
         loader = zip(trainloader_l, trainloader_u)
         len_loader = min(len(trainloader_l), len(trainloader_u))
-        # print(f"Rank {rank}: batch size per GPU = {cfg['batch_size']}")
-        # print(f"Total world size (num gpus) = {world_size}")
-        # print(f"Total effective batch size = {cfg['batch_size'] * world_size}")
+
         for i, ((imgA_x, imgB_x, mask_x, vl_mask_x_change, vl_mask_x_A, vl_mask_x_B),
                 (imgA_w, imgB_w, imgA_s1, imgB_s1,
                  imgA_s2, imgB_s2, ignore_mask, mix1, _, vl_mask_change, vl_mask_A, vl_mask_B)) in enumerate(loader):
-            # print(f"[Rank {rank}] imgA_x.shape: {imgA_x.shape}")
-            # break  # 只打印一次就行
+
 
             t0 = time.time()
             iters = epoch * len(trainloader_u) + i
@@ -340,8 +317,7 @@ if __name__ == '__main__':
             imgA_s2, imgB_s2 = imgA_s2.cuda(), imgB_s2.cuda()
             mask_x = mask_x.cuda()
             imgA_w, imgB_w = imgA_w.cuda(), imgB_w.cuda()
-            #ignore_mask = ignore_mask.cuda()
-            #mix1 = mix1.cuda()
+
 
             # for VL pseudo labels
             vl_mask_x_change = vl_mask_x_change.cuda()
@@ -350,7 +326,7 @@ if __name__ == '__main__':
 
             vl_mask_change = vl_mask_change.cuda()
 
-            # Generate predictions
+
             model.train()
 
             pred_x, pred_x_for_vl, pred_x_segA, pred_x_segB, pred_x_dist, feat_x_A, feat_x_B = model(imgA_x, imgB_x,
@@ -410,9 +386,6 @@ if __name__ == '__main__':
             # L_mvc
             loss_mvc = (lw2f + lw2i + lp2w)*ramp_factor
             
-
-
-
 
                 # 计算 Lsc 损失
             lsc_s_cd = compute_lsc_loss(pred_s_segA, pred_s_segB, vl_mask_change, m_u=m_u, m_c=m_c)*ramp_factor
@@ -530,37 +503,29 @@ if __name__ == '__main__':
                         dict(title='S2_CD, VL_mask', data=vl_mask_change[b_i], type='label', palette=palette),
 
                         dict(title='Pred L segA', data=pred_x_segA[b_i], type='prediction', palette=palette),
-                        # dict(title='Pred w segA', data=pred_w_segA[b_i], type='prediction', palette=palette),
-                        # dict(title='Pred S1 segA', data=pred_s_segA[b_i], type='prediction', palette=palette),
+                        dict(title='Pred w segA', data=pred_w_segA[b_i], type='prediction', palette=palette),
+                        dict(title='Pred S1 segA', data=pred_s_segA[b_i], type='prediction', palette=palette),
 
                         None,
 
                         dict(title='Pred L segB', data=pred_x_segB[b_i], type='prediction', palette=palette),
-                        # dict(title='Pred w segB', data=pred_w_segB[b_i], type='prediction', palette=palette),
-                        # dict(title='Pred S1 segB', data=pred_s_segB[b_i], type='prediction', palette=palette),
+                        dict(title='Pred w segB', data=pred_w_segB[b_i], type='prediction', palette=palette),
+                        dict(title='Pred S1 segB', data=pred_s_segB[b_i], type='prediction', palette=palette),
 
                         None,
 
                         dict(title='Pred L', data=pred_x[b_i], type='prediction', palette=palette),
-                        # dict(title='Pred w', data=pred_w[b_i], type='prediction', palette=palette),
-                        # dict(title='Pred S1', data=pred_s[b_i], type='prediction', palette=palette),
+                        dict(title='Pred w', data=pred_w[b_i], type='prediction', palette=palette),
+                        dict(title='Pred S1', data=pred_s[b_i], type='prediction', palette=palette),
 
                         None,
 
                         None,
-                        # dict(title='PreCD w FP', data=pred_w_fp[b_i], type='prediction', palette=palette),
-                        # dict(title='PreA w FP', data=pred_w_segA_fp[b_i], type='prediction', palette=palette),
-                        # dict(title='PreB w FP', data=pred_w_segB_fp[b_i], type='prediction', palette=palette),
+                        dict(title='PreCD w FP', data=pred_w_fp[b_i], type='prediction', palette=palette),
+                        dict(title='PreA w FP', data=pred_w_segA_fp[b_i], type='prediction', palette=palette),
+                        dict(title='PreB w FP', data=pred_w_segB_fp[b_i], type='prediction', palette=palette),
                     ]
-                    # if vl_consistency_lambda != 0:
-                    #     plot_dicts.extend([
-                    #         None,
-                    #         None,
-                    #         #dict(title='VL S1', data=vl_mask_change_mixed1[b_i], type='label', palette=palette),
-                    #         None,
-                    #         dict(title='VL FP', data=vl_mask_change[b_i], type='label', palette=palette),
-                    #     ])
-                    #     rows += 1
+
                     fig, axs = plt.subplots(
                         rows, cols, figsize=(2 * cols, 2 * rows), squeeze=False,
                         gridspec_kw={'hspace': 0.1, 'wspace': 0, 'top': 0.95, 'bottom': 0, 'right': 1, 'left': 0})
