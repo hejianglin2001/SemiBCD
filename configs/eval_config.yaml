@@ -1,0 +1,66 @@
+# 通用半监督变化检测训练配置模板
+
+# 数据集相关配置
+dataset: whu                # 数据集名称，如 levir、whu、custom 等
+data_root: ./data/WHU-CD-256/  # 数据集根目录，修改为你的数据路径
+exp: 48
+nclass: 2                    # 类别数，通常是 2（变化/未变化）
+split: 5%                    # 标注数据占比，5%、10%等
+img_scale: null              # 图像缩放大小，null 表示不缩放
+scale_ratio_range: [0.5, 2.0] # 缩放比例范围
+crop_size: 256               # 裁剪大小
+labeled_photometric_distortion: false  # 是否开启有标注样本颜色扰动增强
+
+# 模型相关配置
+model: mmseg.vlm-lighthead-r50   # 模型名称，保持与代码匹配
+model_args: {}                   # 传给模型的额外参数，通常为空字典
+
+# 训练方法和参数
+method: diffmatch_unimatch        # 半监督方法名称
+use_fp: true                     # 是否使用混合精度训练
+conf_mode: pixelwise             # 置信度模式，pixelwise 或其他
+conf_thresh: 0.95                # 置信度阈值
+disable_dropout: true            # 训练时是否禁用 dropout
+pleval: true                    # 是否启用伪标签评估
+fp_rate: 0.5                    # 伪标签失真率参数
+vl_consistency_lambda: [0.1, 0]  # 一致性损失权重
+vl_loss_reduce: mean_all        # 损失函数归约方式
+
+# 损失函数配置
+criterion:
+  name: CELoss
+  kwargs:
+    ignore_index: 255
+criterion_u: CELoss             # 无标注损失函数
+
+# 优化器相关
+lr: 0.01                       # 学习率
+lr_multi: 20.0                 # 学习率多倍数，用于调整backbone与head不同学习率
+warmup_iters: 0                # 预热迭代数
+warmup_ratio: 1.0e-06          # 预热学习率比例
+
+# 硬件相关配置
+gpu_model: '5080'              # 显卡型号（仅作记录）
+n_gpus: 1                     # 使用的GPU数量
+n_nodes: 1                    # 计算节点数
+
+# 训练参数
+batch_size: 8                 # 每批次大小
+epochs: 200                  # 总训练轮数
+iters: null                  # 迭代次数，null表示使用epochs
+
+# 评估相关配置
+eval_mode: original           # 评估模式
+eval_every_n_epochs: 1        # 每隔多少轮评估一次
+nccl_p2p_disable: false       # NCCL点对点通信是否禁用
+
+# 伪标签路径
+vl_label_root: /path/to/vl_label_root        # 伪标签文件根目录（根据实际修改）
+vl_change_label_root: /path/to/vl_change_label_root  # 伪标签变化标注目录
+
+# 其他
+contrastive_loss_weight: 0.1   # 对比损失权重
+                    # 实验编号，方便区分不同实验
+name: levir-5%-256_vlm-lighthead-r50_dm_unimatch-095-disdrop-plev-ma-ce-uce_org-1e-02-b201x1x8-ep200_eor  # 实验名称，写清楚方便管理
+version: '0.10'               # 版本号
+git_rev: ''                  # git版本号，非必须
