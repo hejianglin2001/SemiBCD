@@ -306,7 +306,7 @@ def generate_experiment_cfgs(exp_id,ngpus=1):
             dict(model='mmseg.vlm-lighthead-r50', opt='original', lr=1e-2, backbone_lr_mult=20., criterion='CELoss',
                  vl_consistency_lambda=[0.1, 0], vl_loss_reduce='mean_all',
                  
-                 vl_label_root='ape_output/gen_seg_label/levir_cd_pseudo_label',
+                 vl_label_root='ape_output/gen_seg_label/ape_selftrain_levir_cd_pseudo_label',
                  vl_change_label_root='ape_output/gen_cd_label/levir_self_train_pixel_level_change_mask',
                 #  vl_label_root_whu='APE_output/ape_selftrain_whu_cd_pseudo_label',
                 #  vl_change_label_root_whu='gen_cd_label/whu_self_train_pixel_level_change_mask',
