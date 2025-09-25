@@ -16,4 +16,9 @@ We recommend using **conda**:
 conda create -n semibcd python=3.9 -y
 conda activate semibcd
 pip install -r requirements.txt
-
+```
+##📥 Pretrained Models
+Download the pretrained checkpoint from the following link:
+👉 [Download Link Here]
+##🚀 Run Testing
+Run the following command to evaluate the model:
