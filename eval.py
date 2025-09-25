@@ -94,7 +94,7 @@ def main():
 
     # 10. 评估
     eval_mode = cfg.get('eval_mode', 'default_eval_mode')
-    results = evaluate2(model, val_loader, eval_mode, cfg, return_cd_metric=True)
+    results = evaluate(model, val_loader, eval_mode, cfg, return_cd_metric=True)
 
     # 11. 只在 rank0 打印结果
     if rank == 0:
