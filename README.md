@@ -19,6 +19,6 @@ pip install -r requirements.txt
 ```
 ## 📥 Pretrained Models
 Download the pretrained checkpoint from the following link:
-👉 [Download Link Here]
+👉 [ResNet-50](https://drive.google.com/file/d/1mqUrqFvTQ0k5QEotk4oiOFyP6B9dVZXS/view?usp=sharing) 
 ## 🚀 Run Testing
 Run the following command to evaluate the model:
