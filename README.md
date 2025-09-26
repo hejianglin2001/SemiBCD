@@ -34,7 +34,7 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 ## 🚀 Run Testing
 
 ### 1. **Download pretrained experiment weights**  
-   👉 [SemiBCD Experiment Weights](YOUR_EXPERIMENT_LINK_HERE)  
+   👉 [SemiBCD Experiment Weights](https://pan.baidu.com/s/13MppHfYZyVdxRfkEw9tsTg?pwd=4zvg)
    
 
 ### 2. **Run testing**  
