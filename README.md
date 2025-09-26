@@ -32,3 +32,11 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 
 ## 🚀 Run Testing
 Run the following command to evaluate the model:
+
+
+
+
+
+## Acknowledgements
+SemiBCD is based on [SemiCD-VL]([https://github.com/google-research/semivl](https://github.com/likyoo/SemiCD-VL)), [SemiVL](https://github.com/google-research/semivl), [UniMatch](https://github.com/LiheYoung/UniMatch), [APE](https://github.com/shenyunhang/APE), and [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). We thank their authors for making the source code publicly available.
+
