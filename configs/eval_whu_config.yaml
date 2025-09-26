@@ -1,5 +1,5 @@
 # 数据集相关配置
-dataset: whu                # 数据集名称，如 levir、whu、custom 等
+dataset: whu                # 数据集名称
 data_root: ./data/WHU-CD-256/  # 数据集根目录，修改为你的数据路径
 exp: 48
 nclass: 2                    # 类别数，通常是 2（变化/未变化）
