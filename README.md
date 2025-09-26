@@ -17,8 +17,18 @@ conda create -n semibcd python=3.9 -y
 conda activate semibcd
 pip install -r requirements.txt
 ```
-## 📥 Pretrained Models
-Download the pretrained checkpoint from the following link:
+## 📥 Download Backbone Pretrained Weights
+SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 👉 [ResNet-50](https://drive.google.com/file/d/1mqUrqFvTQ0k5QEotk4oiOFyP6B9dVZXS/view?usp=sharing) 
+## 📥 Download Dataset
+
+### 1. LEVIR-CD-256
+👉 [LEVIR-CD-256 Dataset](https://www.dropbox.com/s/18fb5jo0npu5evm/LEVIR-CD256.zip?dl=0)  
+下载后解压到 `data/LEVIR-CD-256/` 文件夹。
+
+### 2. WHU-CD-256
+👉 [WHU-CD-256 Dataset](https://www.dropbox.com/s/r76a00jcxp5d3hl/WHU-CD-256.zip?dl=0)  
+下载后解压到 `data/WHU-CD-256/` 文件夹。
+
 ## 🚀 Run Testing
 Run the following command to evaluate the model:
