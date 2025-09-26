@@ -23,7 +23,7 @@ from mmseg.ops import resize
 from torch.nn import functional as F
 
 from model.backbone.timm_vit import TIMMVisionTransformer
-from model.decode_heads.dlv3p_head import DLV3PHead
+
 from model.backbone.semi_resnet import semi_resnet50
 from model.decode_heads.light_head import LightHead
 from model.vlm import VLM
