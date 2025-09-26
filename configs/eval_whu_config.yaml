@@ -14,17 +14,11 @@ model_args: {}                   # 传给模型的额外参数，通常为空字
 
 disable_dropout: true            # 训练时是否禁用 dropout
 fp_rate: 0.5                    # 伪标签失真率参数
-# 优化器相关
-lr: 0.01                       # 学习率
-lr_multi: 20.0                 # 学习率多倍数，用于调整backbone与head不同学习率
-warmup_iters: 0                # 预热迭代数
-warmup_ratio: 1.0e-06          # 预热学习率比例
 
 # 硬件相关配置
 gpu_model: '5080'              # 显卡型号（仅作记录）
 n_gpus: 1                     # 使用的GPU数量
 n_nodes: 1                    # 计算节点数
-
 
 # 评估相关配置
 eval_mode: original           # 评估模式
