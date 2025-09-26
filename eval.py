@@ -10,8 +10,8 @@ from torch.utils.data import DataLoader, DistributedSampler
 
 import mmcv
 from model.builder import build_model
-from third_party.unimatch.supervised import evaluate2
-from third_party.unimatch.dataset.semicd import SemiCDDataset
+from third_party.unimatch.supervised import evaluate
+from third_party.unimatch.dataset.semibcd import SemiBCDDataset
 from third_party.unimatch.util.dist_helper import setup_distributed
 from third_party.unimatch.util.utils import init_log
 
@@ -82,7 +82,7 @@ def main():
         raise FileNotFoundError(f"No checkpoint found at {args.checkpoint}")
 
     # 9. 准备验证集和分布式采样器
-    valset = SemiCDDataset(cfg, 'val')
+    valset = SemiBCDDataset(cfg, 'test')
     val_sampler = DistributedSampler(valset, num_replicas=world_size, rank=rank, shuffle=False)
     val_loader = DataLoader(
         valset, batch_size=1, shuffle=False,
@@ -113,4 +113,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-#python eval.py --config configs/eval_config.yaml --checkpoint exp/exp-48/best.pth
+#python eval.py --config configs/eval_config.yaml --checkpoint /home/ubuntu/Code/hjl/SemiBCD-VLC/SemiBCD-VLC/exp/exp-48/250911-2010_whu-5%-256_vlm-lighthead-r50_dm_unimatch-095-disdrop-plev-ma-ce-uce_org-6e-03-b201x1x8-ep200_eor_v0-10_65d55/best.pth
