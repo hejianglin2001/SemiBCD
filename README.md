@@ -33,11 +33,11 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 
 ## 🚀 Run Testing
 
-1. **Download pretrained experiment weights**  
+### 1. **Download pretrained experiment weights**  
    👉 [SemiBCD Experiment Weights](YOUR_EXPERIMENT_LINK_HERE)  
    
 
-2. **Run testing**  
+### 2. **Run testing**  
    例如运行 LEVIR 测试：
 ```bash
 python test.py --config configs/levir_test.yaml --checkpoint checkpoints/sembcd_best.pth
