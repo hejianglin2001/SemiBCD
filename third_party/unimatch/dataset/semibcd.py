@@ -12,8 +12,7 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from mmseg.datasets.pipelines.transforms import Resize, PhotoMetricDistortion
 
-
-class SemiCDDataset(Dataset):
+class SemiBCDDataset(Dataset):
     def __init__(self, cfg, mode, id_path=None, nsample=None,isMix=False):
         if isMix and cfg['dataset']=='levir':
             self.name = 'whu'
@@ -21,21 +20,34 @@ class SemiCDDataset(Dataset):
             self.name = cfg['dataset']
         if mode == 'train_l' or mode == 'train_u':
             self.root = os.path.expandvars(os.path.expanduser(cfg['data_root'][self.name]))
-        else:
+        elif mode == 'val':
             self.root = os.path.expandvars(os.path.expanduser(cfg['data_root'][self.name]))
+        else:
+            self.root = os.path.expandvars(os.path.expanduser(cfg['data_root']))
         self.mode = mode
         self.size = cfg['crop_size']
         self.img_scale = cfg['img_scale']
-        self.vl_label_root = cfg['vl_label_root']
-        self.vl_change_label_root = cfg['vl_change_label_root']
-        if isMix:
+        if mode == 'train_l' or mode == 'train_u':
+            self.vl_label_root = cfg['vl_label_root']
+            self.vl_change_label_root = cfg['vl_change_label_root']
+        elif mode == 'val':
+            self.vl_label_root = cfg['vl_label_root']
+            self.vl_change_label_root = cfg['vl_change_label_root']
+        else:
+            self.vl_label_root = None
+            self.vl_change_label_root = None
+
+        if isMix and (mode == 'train_l' or mode == 'train_u'):
             self.vl_label_root = cfg['vl_label_root_whu']
             self.vl_change_label_root = cfg['vl_change_label_root_whu']
             print("数据集混合训练已打开！！")
+        elif isMix  and mode == 'val':
+            self.vl_label_root = cfg['vl_label_root_whu']
+            self.vl_change_label_root = cfg['vl_label_root_whu']
 
-        else:
-            self.vl_label_root = cfg['vl_label_root']
-            self.vl_change_label_root = cfg['vl_change_label_root']
+        elif mode == 'test':
+            self.vl_label_root = None
+            self.vl_change_label_root = None
 
         if mode == 'train_l' or mode == 'train_u':
             with open(id_path, 'r') as f:
@@ -69,7 +81,10 @@ class SemiCDDataset(Dataset):
             imgA, mask = normalize(imgA, mask)
             imgB = normalize(imgB)
             return imgA, imgB, mask, id
-
+        if self.mode == 'test':
+            imgA, mask = normalize(imgA, mask)
+            imgB = normalize(imgB)
+            return imgA, imgB, mask, id
         # get pseudo labels
         try:
 
