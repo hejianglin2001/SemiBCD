@@ -24,7 +24,7 @@ import mmseg
 from third_party.unimatch.dataset.semi import SemiDataset
 from model.builder import build_model
 from mmseg.core import build_optimizer
-from experiments import get_git_revision
+
 from datasets.classes import CLASSES
 from third_party.unimatch.util.ohem import ProbOhemCrossEntropy2d
 from third_party.unimatch.util.utils import count_params, AverageMeter, intersectionAndUnion, init_log
@@ -313,7 +313,8 @@ def main():
         all_args = {**cfg, **vars(args), 
                     'labeled_id_path': labeled_id_path, 'unlabeled_id_path': unlabeled_id_path,
                     'ngpus': world_size, 'run_name': run_name, 'save_path': save_path,
-                    'exec_git_rev': get_git_revision(), 'exec_version': __version__}
+                   # 'exec_git_rev': get_git_revision(),
+                    'exec_version': __version__}
         logger.info('{}\n'.format(pprint.pformat(all_args)))
         
         writer = SummaryWriter(save_path)
