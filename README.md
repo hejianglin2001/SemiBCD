@@ -20,8 +20,9 @@ pip install -r requirements.txt
 ## 📥 Download Backbone Pretrained Weights
 SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 👉 [ResNet-50](https://drive.google.com/file/d/1mqUrqFvTQ0k5QEotk4oiOFyP6B9dVZXS/view?usp=sharing) 
-## 📥 Download Dataset
 
+
+## 📥 Download Dataset
 ### 1. LEVIR-CD-256
 👉 [LEVIR-CD-256 Dataset](https://www.dropbox.com/s/18fb5jo0npu5evm/LEVIR-CD256.zip?dl=0)  
 下载后解压到 `data/LEVIR-CD-256/` 文件夹。
@@ -31,7 +32,16 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 下载后解压到 `data/WHU-CD-256/` 文件夹。
 
 ## 🚀 Run Testing
-Run the following command to evaluate the model:
+
+1. **Download pretrained experiment weights**  
+   👉 [SemiBCD Experiment Weights](YOUR_EXPERIMENT_LINK_HERE)  
+   
+
+2. **Run testing**  
+   例如运行 LEVIR 测试：
+```bash
+python test.py --config configs/levir_test.yaml --checkpoint checkpoints/sembcd_best.pth
+
 
 
 
