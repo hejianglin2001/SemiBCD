@@ -38,9 +38,15 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
    
 
 ### 2. **Run testing**  
-   例如运行 LEVIR 测试：
+   运行 WHU 测试：
 ```bash
-python test.py --config configs/levir_test.yaml --checkpoint checkpoints/sembcd_best.pth
+python eval.py --config configs/eval_whu_config.yaml --checkpoint ./best.pth
+
+```
+   运行 LEVIR 测试：
+```bash
+python eval.py --config configs/eval_levir_config.yaml --checkpoint ./best.pth
+
 ```
 
 
