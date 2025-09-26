@@ -1,7 +1,7 @@
 # 数据集相关配置
 dataset: levir                # 数据集名称
 data_root: ./data/LEVIR-CD-256/  # 数据集根目录，修改为你的数据路径
-exp: 48
+exp: 47
 nclass: 2                    # 类别数，通常是 2（变化/未变化）
 
 img_scale: null              # 图像缩放大小，null 表示不缩放
@@ -14,11 +14,6 @@ model_args: {}                   # 传给模型的额外参数，通常为空字
 
 disable_dropout: true            # 训练时是否禁用 dropout
 fp_rate: 0.5                    # 伪标签失真率参数
-# 优化器相关
-lr: 0.01                       # 学习率
-lr_multi: 20.0                 # 学习率多倍数，用于调整backbone与head不同学习率
-warmup_iters: 0                # 预热迭代数
-warmup_ratio: 1.0e-06          # 预热学习率比例
 
 # 硬件相关配置
 gpu_model: '5080'              # 显卡型号（仅作记录）
