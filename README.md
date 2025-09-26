@@ -41,8 +41,7 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
    例如运行 LEVIR 测试：
 ```bash
 python test.py --config configs/levir_test.yaml --checkpoint checkpoints/sembcd_best.pth
-
-
+```
 
 
 
