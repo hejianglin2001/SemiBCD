@@ -113,4 +113,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-#python eval.py --config configs/eval_config.yaml --checkpoint /home/ubuntu/Code/hjl/SemiBCD-VLC/SemiBCD-VLC/exp/exp-48/250911-2010_whu-5%-256_vlm-lighthead-r50_dm_unimatch-095-disdrop-plev-ma-ce-uce_org-6e-03-b201x1x8-ep200_eor_v0-10_65d55/best.pth
+
