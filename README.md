@@ -25,11 +25,11 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
 ## 📥 Download Dataset
 ### 1. LEVIR-CD-256
 👉 [LEVIR-CD-256 Dataset](https://www.dropbox.com/s/18fb5jo0npu5evm/LEVIR-CD256.zip?dl=0)  
-下载后解压到 `data/LEVIR-CD-256/` 文件夹。
+Extract the downloaded file to the `data/LEVIR-CD-256/` folder.
 
 ### 2. WHU-CD-256
 👉 [WHU-CD-256 Dataset](https://www.dropbox.com/s/r76a00jcxp5d3hl/WHU-CD-256.zip?dl=0)  
-下载后解压到 `data/WHU-CD-256/` 文件夹。
+Extract the downloaded file to the `data/WHU-CD-256/` folder.
 
 ## 🚀 Run Testing
 
@@ -38,12 +38,13 @@ SemiBCD uses a ResNet-50 backbone. Download the pretrained checkpoint:
    
 
 ### 2. **Run testing**  
-   运行 WHU 测试：
+   Run WHU test:
+   
 ```bash
 python eval.py --config configs/eval_whu_config.yaml --checkpoint ./best.pth
 
 ```
-   运行 LEVIR 测试：
+   Run LEVIR test:
 ```bash
 python eval.py --config configs/eval_levir_config.yaml --checkpoint ./best.pth
 
