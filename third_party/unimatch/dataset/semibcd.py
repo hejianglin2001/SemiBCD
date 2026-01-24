@@ -27,27 +27,27 @@ class SemiBCDDataset(Dataset):
         self.mode = mode
         self.size = cfg['crop_size']
         self.img_scale = cfg['img_scale']
-        if mode == 'train_l' or mode == 'train_u':
+        if mode in ['train_l', 'train_u', 'val']:
+            # 默认主路径
             self.vl_label_root = cfg['vl_label_root']
             self.vl_change_label_root = cfg['vl_change_label_root']
-        elif mode == 'val':
-            self.vl_label_root = cfg['vl_label_root']
-            self.vl_change_label_root = cfg['vl_change_label_root']
+
+            # 混合模式
+            if isMix:
+                self.vl_label_root = cfg.get('vl_label_root_whu') or self.vl_label_root
+                self.vl_change_label_root = cfg.get('vl_change_label_root_whu') or self.vl_change_label_root
+                print(f"⚙️ 混合训练启用 ({mode})：使用 WHU 伪标签路径")
+
+            # 检查路径有效性
+            if not (self.vl_label_root and self.vl_change_label_root):
+                raise ValueError(f"[ERROR] 伪标签路径未设置！mode={mode}, isMix={isMix}")
+
         else:
             self.vl_label_root = None
             self.vl_change_label_root = None
-
-        if isMix and (mode == 'train_l' or mode == 'train_u'):
-            self.vl_label_root = cfg['vl_label_root_whu']
-            self.vl_change_label_root = cfg['vl_change_label_root_whu']
-            print("数据集混合训练已打开！！")
-        elif isMix  and mode == 'val':
-            self.vl_label_root = cfg['vl_label_root_whu']
-            self.vl_change_label_root = cfg['vl_label_root_whu']
-
-        elif mode == 'test':
-            self.vl_label_root = None
-            self.vl_change_label_root = None
+        print("self.mode: ", self.mode)
+        print("self.vl_label_root: ", self.vl_label_root)
+        print("self.vl_change_label_root: ", self.vl_change_label_root)
 
         if mode == 'train_l' or mode == 'train_u':
             with open(id_path, 'r') as f:
