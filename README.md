@@ -3,6 +3,9 @@
 **Code for SemiBCD paper: [Semi-Supervised Building Change Detection From Bitemporal Remote Sensing Images Leveraging Visual–Language Models and Consistency Learning.](https://ieeexplore.ieee.org/abstract/document/11414160)**
 
 ---
+ <p align="center">
+  <img src="./img/SemiBCD.png" width="900"/>
+</p>
 
 ## 🔧 Environment Setup
 
