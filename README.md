@@ -4,7 +4,7 @@
 
 ---
  <p align="center">
-  <img src="./img/SemiBCD.png" width="900"/>
+  <img src="./img/SemiBCD.png" width="880"/>
 </p>
 
 ## 🔧 Environment Setup
