@@ -75,15 +75,10 @@ python experiments.py --exp 47 --run RUN_ID
 ```
 ## :black_nib: Citation
 
-If you find our work helpful for your research, please consider citing the following BibTeX entry.   
+If you find our work helpful for your research, please consider citing.   
 
 ```bibtex
-@inproceedings{APE,
-  title={Aligning and Prompting Everything All at Once for Universal Visual Perception},
-  author={Shen, Yunhang and Fu, Chaoyou and Chen, Peixian and Zhang, Mengdan and Li, Ke and Sun, Xing and Wu, Yunsheng and Lin, Shaohui and Ji, Rongrong},
-  journal={CVPR},
-  year={2024}
-}
+
 ```
 
 ## Acknowledgements
