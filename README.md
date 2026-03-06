@@ -81,6 +81,16 @@ python experiments.py --exp 47 --run RUN_ID
 If you find our work helpful for your research, please consider citing.   
 
 ```bibtex
+@ARTICLE{11414160,
+  author={Liu, Wei and He, Jianglin and Zhong, Yuhang and Yu, Yongtao and Luo, Zhiming and Guan, Haiyan and Li, Jonathan},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={Semi-Supervised Building Change Detection From Bitemporal Remote Sensing Images Leveraging Visual–Language Models and Consistency Learning}, 
+  year={2026},
+  volume={64},
+  number={},
+  pages={1-15},
+  keywords={Buildings;Semantics;Remote sensing;Transformers;Uncertainty;Training;Feature extraction;Convolutional neural networks;Annotations;Adaptation models;Building change detection (CD);consistency learning;semi-supervised learning;visual–language model (VLM)},
+  doi={10.1109/TGRS.2026.3668369}}
 
 ```
 
