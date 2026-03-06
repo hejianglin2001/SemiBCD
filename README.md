@@ -1,10 +1,6 @@
-# SemiBCD
+# SemiBCD：Semi-Supervised Building Change Detection From Bitemporal Remote Sensing Images Leveraging Visual–Language Models and Consistency Learning
 
-This repository contains the testing code and pretrained models for our paper:
 
-> **Paper under review**  
-> Authors: [Anonymous for review]  
-> Under Review, 2025  
 
 ---
 
