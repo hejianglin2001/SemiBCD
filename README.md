@@ -47,7 +47,44 @@ python eval.py --config configs/eval_levir_config.yaml --checkpoint ./best.pth
 ```
 
 
+## 🚀 Run Training
 
+
+   Train on WHU-CD:
+   
+```bash
+python experiments.py --exp 48 --run RUN_ID
+
+# e.g. RUN_ID=0 for SemiBCD on WHU-CD with 5% labels
+# RUN_ID controls the labeled data ratio:
+# 0 → 5% labels
+# 1 → 10% labels
+# 2 → 20% labels
+# 3 → 40% labels
+```
+   Train on LEVIR-CD:
+```bash
+python experiments.py --exp 47 --run RUN_ID
+
+# e.g. RUN_ID=0 for SemiBCD on LEVIR-CD with 5% labels
+# RUN_ID controls the labeled data ratio:
+# 0 → 5% labels
+# 1 → 10% labels
+# 2 → 20% labels
+# 3 → 40% labels
+```
+## :black_nib: Citation
+
+If you find our work helpful for your research, please consider citing the following BibTeX entry.   
+
+```bibtex
+@inproceedings{APE,
+  title={Aligning and Prompting Everything All at Once for Universal Visual Perception},
+  author={Shen, Yunhang and Fu, Chaoyou and Chen, Peixian and Zhang, Mengdan and Li, Ke and Sun, Xing and Wu, Yunsheng and Lin, Shaohui and Ji, Rongrong},
+  journal={CVPR},
+  year={2024}
+}
+```
 
 ## Acknowledgements
 SemiBCD is based on [SemiCD-VL](https://github.com/likyoo/SemiCD-VL), [SemiVL](https://github.com/google-research/semivl), [UniMatch](https://github.com/LiheYoung/UniMatch), [APE](https://github.com/shenyunhang/APE), and [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). We thank their authors for making the source code publicly available.
