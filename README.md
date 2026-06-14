@@ -30,6 +30,9 @@ Extract the downloaded file to the `data/LEVIR-CD-256/` folder.
 👉 [WHU-CD-256 Dataset](https://www.dropbox.com/s/r76a00jcxp5d3hl/WHU-CD-256.zip?dl=0)  
 Extract the downloaded file to the `data/WHU-CD-256/` folder.
 
+### 3. APE_output
+👉 [ape_output](https://pan.baidu.com/s/10oB3DNNlEWNVgCL38FHcfw?pwd=96ng)  
+Extract the downloaded file to the `ape_output` folder.
 ## 🚀 Run Testing
 
 ### 1. **Download pretrained experiment weights**  
